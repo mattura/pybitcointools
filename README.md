@@ -631,9 +631,11 @@ https://faucet.thonguyen.net/ltc
 
 http://testnet.litecointools.com/
 
-This Dash faucet works as of July 2021:
+These Dash faucets work as of July 2021:
 
 http://faucet.testnet.networks.dash.org/
+
+http://faucet.test.dash.crowdnode.io/
 
 Dogecoin mainnet is tested but Dogecoin testnet still needs testing (it could be you!)
 
