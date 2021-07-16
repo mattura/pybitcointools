@@ -1,8 +1,10 @@
-REPOSITORY HAS BEEN ARCHIVED AND IS NO LONGER MAINTAINED FOR NOW
-
 # Pycryptotools, Python library for Crypto coins signatures and transactions
 
-This is a fork of Vitalik Buterin's original [pybitcointools](https://github.com/vbuterin/pybitcointools) library.
+This is a fork of [primal100's fork](https://github.com/primal100/pybitcointools) of Vitalik Buterin's original [pybitcointools](https://github.com/vbuterin/pybitcointools) library. I don't plan on maintaining this repo long term, just fixing some bugs and adding some further address generating functionality for my purposes.
+
+As stated below - do NOT rely on this library to send coins on mainnets without thoroughly testing first! This is not part of my use case and will not likely be looked at.
+
+Use at your own risk!
 
 Installation:
 
@@ -617,7 +619,7 @@ segwit or a coin you haven't worked with before, try it out in testnet first or 
 on the mainnet. The original pybitcointools had issues opened in Github where people lost money either due to 
 not understanding what they were doing or because of bugs. 
 
-Here are some links to testnet faucets:
+Here are some [old] links to testnet faucets:
 
 https://testnet.manu.backend.hamburg/faucet
 
@@ -628,6 +630,15 @@ http://test.faucet.masternode.io/
 https://faucet.thonguyen.net/ltc
 
 http://testnet.litecointools.com/
+---
 
-Anyone know a working Dogecoin testnet faucet, or willing to send testnet coins to address 
-nmfnMVSjfyfiv37HtbphRbLgMPUHQE7QdP so I can test? (Dogecoin mainnet is tested).
+This Dash faucet works as of July 2021:
+http://faucet.testnet.networks.dash.org/
+
+Dogecoin mainnet is tested but Dogecoin testnet still needs testing (it could be you!)
+
+
+If you have spare testnet coins, please send to:
+Bitcoin: 2NFwUJL8hr3SRLHbVQP7PNP2Vr9dCTHDGxb
+Dash:  yXaTaXk7V4emyKLbDgFdA1SUWEpf52q1X5
+Thanks
