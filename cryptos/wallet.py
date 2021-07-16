@@ -135,7 +135,7 @@ class HDWallet(object):
     def details(self, password=None):
         return {
             'type': "%s %s" % ("Electrum" if self.keystore.electrum else "BIP39", self.keystore.xtype),
-            'xkeys': (self.keystore.root_derivation, self.keystore.xpriv, self.keystore.xpub),
+            'xkeys': (self.keystore.root_derivation, self.keystore.xprv, self.keystore.xpub),
             'xreceiving': (),
             'xchange': (),
             'receiving': [self.account(a, password=password) for a in self.receiving_addresses],
