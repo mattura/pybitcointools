@@ -327,8 +327,8 @@ class BIP32_KeyStore(Deterministic_KeyStore, Xpub):
         self.bip39_prefixes = (encode(self.coin.electrum_xprv_headers[xtype], 256, 4),
                                encode(self.coin.electrum_xpub_headers[xtype], 256, 4)) if electrum else (
         encode(self.coin.xprv_headers[xtype], 256, 4), encode(self.coin.xpub_headers[xtype], 256, 4))
-        xprv = bip32_master_key(bip32_seed, self.bip39_prefixes)
-        xprv = bip32_ckd(xprv, derivation, self.bip39_prefixes)
+        self.bip32_root_key = bip32_master_key(bip32_seed, self.bip39_prefixes)
+        xprv = bip32_ckd(self.bip32_root_key, derivation, self.bip39_prefixes)
         self.add_xprv(xprv)
 
     def get_private_key(self, sequence, password):
@@ -435,6 +435,13 @@ def from_bip39_seed(seed, passphrase, derivation, coin):
     xtype = xtype_from_derivation(derivation)
     k.add_xprv_from_seed(bip32_seed, xtype, derivation)
     return k
+    
+def from_bip39_seed_hex(seed_hex, derivation, coin):
+    k = BIP32_KeyStore({}, coin)
+    bip32_seed = safe_from_hex(seed_hex)
+    xtype = xtype_from_derivation(derivation)
+    k.add_xprv_from_seed(bip32_seed, xtype, derivation)
+    return k
 
 def standard_from_bip39_seed(seed, passphrase, coin):
     derivation = "m/44'/%s'/0'" % coin.hd_path
@@ -448,6 +455,13 @@ def p2wpkh_p2sh_from_bip39_seed(seed, passphrase, coin):
     derivation = "m/49'/%s'/0'" % coin.hd_path
     return from_bip39_seed(seed, passphrase, derivation, coin)
 
+def ledger_btc_segwit_from_bip39_seed(seed, passphrase, coin):
+    derivation = "m/49'/0'/0'"
+    return from_bip39_seed(seed, passphrase, derivation, coin)
+
+def ledger_btc_native_segwit_from_bip39_seed(seed, passphrase, coin):
+    derivation = "m/84'/0'/0'"
+    return from_bip39_seed(seed, passphrase, derivation, coin)
 
 def xtype_from_derivation(derivation):
     """Returns the script type to be used for this derivation."""
