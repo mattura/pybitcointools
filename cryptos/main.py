@@ -13,6 +13,7 @@ from .ripemd import *
 # Elliptic curve parameters (secp256k1)
 
 P = 2**256 - 2**32 - 977
+#Highest N for prikey = 0xfffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141
 N = 115792089237316195423570985008687907852837564279074904382605163141518161494337
 A = 0
 B = 7
