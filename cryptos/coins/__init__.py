@@ -5,3 +5,4 @@ from .dash import *
 from .dogecoin import *
 from .litecoin import *
 from .zcash import *
+from .ripple import *

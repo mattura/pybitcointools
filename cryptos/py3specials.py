@@ -14,6 +14,7 @@ if sys.version_info.major == 3:
         16: '0123456789abcdef',
         32: 'abcdefghijklmnopqrstuvwxyz234567',
         58: '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz',
+        'xrp': 'rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz',
         256: ''.join([chr(x) for x in range(256)])
     }
 
@@ -53,10 +54,12 @@ if sys.version_info.major == 3:
         checksum = bin_dbl_sha256(inp)[:4]
         return '1' * leadingzbytes + changebase(inp+checksum, 256, 58)
 
+    def b58_to_xrp(string):
+        return 'r' + encode(decode(string[1:], 58), 'xrp')
+
     def bytes_to_hex_string(b):
         if isinstance(b, str):
             return b
-
         return ''.join('{:02x}'.format(y) for y in b)
 
     def safe_from_hex(s):
@@ -78,8 +81,12 @@ if sys.version_info.major == 3:
         return str(binascii.hexlify(a), 'utf-8')
 
     def encode(val, base, minlen=0):
-        base, minlen = int(base), int(minlen)
-        code_string = get_code_string(base)
+        if base == 'xrp':
+            code_string = get_code_string(base)
+            base = 58
+        else:
+            base, minlen = int(base), int(minlen)
+            code_string = get_code_string(base)
         result_bytes = bytes()
         while val > 0:
             curcode = code_string[val % base]
